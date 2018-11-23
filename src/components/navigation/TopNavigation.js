@@ -44,10 +44,19 @@ const styles = {
 class Menu extends React.Component {
 	render() {
 		const { menuItems } = this.props;
-		const menuListItems = menuItems.map((menuItem) => (
+		const leftMenuItems = menuItems.leftSide.map((menuItem) => (
 			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} />
 		));
-		return <div style={styles.menuContainer}>{menuListItems}</div>;
+		const rightMenuItems = menuItems.rightSide.map((menuItem) => (
+			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} />
+		));
+		return (
+			<div style={styles.menuContainer}>
+				{leftMenuItems}
+				<div style={styles.spacerContainer} />
+				{rightMenuItems}
+			</div>
+		);
 	}
 }
 
@@ -77,12 +86,14 @@ class MenuItem extends React.Component {
  */
 export default class TopNavigation extends React.Component {
 	render() {
-		const menuItems = [
-			{linkText: "Home", linkTo: "/"},
-			{linkText: "Games", linkTo: "games"},
-			{linkText: "Feed", linkTo: "feed"},
-			{linkText: "LogOut", linkTo: "logout"}
-		];
+		const menuItems = {
+			leftSide: [
+				{ linkText: 'Home', linkTo: '/' },
+				{ linkText: 'Games', linkTo: 'games' },
+				{ linkText: 'Feed', linkTo: 'feed' }
+			],
+			rightSide: [ { linkText: 'LogOut', linkTo: 'logout' } ]
+		};
 		return (
 			<Menu menuItems={menuItems} />
 			// <div style={styles.container}>
