@@ -17,7 +17,7 @@ export default class TopNavigation extends React.Component {
 		const colors = {
 			menuBgColor: '#b9b9b9',
 			menuItemColors: {
-				normal: '#00cc00',
+				normal: '#dfdfdf',
 				hover: '#0000cc'
 			}
 		}
