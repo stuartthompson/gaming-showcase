@@ -14,9 +14,15 @@ export default class TopNavigation extends React.Component {
 			],
 			rightSide: [ { linkText: 'LogOut', linkTo: 'logout' } ]
 		};
-		const backgroundColor = '#b9b9b9';
+		const colors = {
+			menuBgColor: '#b9b9b9',
+			menuItemColors: {
+				normal: '#00cc00',
+				hover: '#0000cc'
+			}
+		}
 		return (
-			<Menu backgroundColor={backgroundColor} menuItems={menuItems} />
+			<Menu colors={colors} menuItems={menuItems} />
 		);
 	}
 }

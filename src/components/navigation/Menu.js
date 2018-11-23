@@ -13,7 +13,6 @@ const styles = {
 		textAlign: 'center'
 	},
 	menuItemContainer: {
-		backgroundColor: '#555555',
 		color: '#000000',
 		display: 'flex',
 		flexDirection: 'column',
@@ -28,7 +27,6 @@ const styles = {
 		flexDirection: 'row',
 		justifyContent: 'center'
 	},
-	menuItemIconContainer: {},
 	menuItemTextContainer: {
 		paddingLeft: 6,
 		textAlign: 'left'
@@ -39,26 +37,32 @@ const styles = {
  * Represents a menu component.
  */
 class Menu extends React.Component {
+    /**
+     * Prop types for menu component.
+     */
     static propTypes = {
-        backgroundColor: PropTypes.string,
+        colors: PropTypes.object,
         menuItems: PropTypes.object
     };
-	render() {
-        const { backgroundColor, menuItems } = this.props;
+    /**
+     * Renders the menu component.
+     */
+    render() {
+        const { colors, menuItems } = this.props;
         // Calculate menu item widths
 		const totalMenuItems = menuItems.leftSide.length + menuItems.rightSide.length;
 		const menuItemWidth = 1 / totalMenuItems;
         const spacerWidth = (totalMenuItems / 2) + 2;
         // Map left-side menu items
 		const leftMenuItems = menuItems.leftSide.map((menuItem) => (
-			<MenuItem key={menuItem.linkText} linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
+			<MenuItem colors={colors.menuItemColors} key={menuItem.linkText} linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
         ));
         // Map right-side menu items
 		const rightMenuItems = menuItems.rightSide.map((menuItem) => (
-			<MenuItem key={menuItem.linkText} linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
+			<MenuItem colors={colors.menuItemColors} key={menuItem.linkText} linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
 		));
 		return (
-			<div style={{...styles.menuContainer, backgroundColor: backgroundColor}}>
+			<div style={{...styles.menuContainer, backgroundColor: colors.menuBgColor}}>
 				{leftMenuItems}
 				<div style={{flex: spacerWidth / totalMenuItems }} />
 				{rightMenuItems}
@@ -71,10 +75,16 @@ class Menu extends React.Component {
  * Represents a menu item component.
  */
 class MenuItem extends React.Component {
+    static propTypes = {
+        colors: PropTypes.object,
+        linkText: PropTypes.string,
+        linkTo: PropTypes.string,
+        width: PropTypes.number
+    };
 	render() {
-		const { linkText, linkTo, width } = this.props;
+		const { colors, linkText, linkTo, width } = this.props;
 		return (
-			<Link to={linkTo} style={{...styles.menuItemContainer, flex: width}}>
+			<Link to={linkTo} style={{...styles.menuItemContainer, backgroundColor: colors.normal, flex: width}}>
 				<div style={styles.menuItemSpacer} />
 				<div style={styles.menuItemContentContainer}>
 					<div>I</div>
