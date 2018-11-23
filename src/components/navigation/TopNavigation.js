@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const styles = {
-	container: {
+	menuContainer: {
 		backgroundColor: '#a8a8a8',
 		display: 'flex',
 		flex: 1,
@@ -28,17 +28,28 @@ const styles = {
 		flexDirection: 'row',
 		justifyContent: 'center'
 	},
-	menuItemIconContainer: {
-	
-	},
+	menuItemIconContainer: {},
 	menuItemTextContainer: {
 		paddingLeft: 6,
 		textAlign: 'left'
 	},
 	spacerContainer: {
 		flex: 6 / 10
-	},
+	}
 };
+
+/**
+ * Represents a menu component.
+ */
+class Menu extends React.Component {
+	render() {
+		const { menuItems } = this.props;
+		const menuListItems = menuItems.map((menuItem) => (
+			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} />
+		));
+		return <div style={styles.menuContainer}>{menuListItems}</div>;
+	}
+}
 
 /**
  * Represents a menu item component.
@@ -66,14 +77,21 @@ class MenuItem extends React.Component {
  */
 export default class TopNavigation extends React.Component {
 	render() {
+		const menuItems = [
+			{linkText: "Home", linkTo: "/"},
+			{linkText: "Games", linkTo: "games"},
+			{linkText: "Feed", linkTo: "feed"},
+			{linkText: "LogOut", linkTo: "logout"}
+		];
 		return (
-			<div style={styles.container}>
-				<MenuItem linkText="Home" linkTo="/" />
-				<MenuItem linkText="Games" linkTo="games" />
-				<MenuItem linkText="Feed" linkTo="feed" />
-				<div style={styles.spacerContainer} />
-				<MenuItem linkText="Logout" linkTo="logout" />
-			</div>
+			<Menu menuItems={menuItems} />
+			// <div style={styles.container}>
+			// 	<MenuItem linkText="Home" linkTo="/" />
+			// 	<MenuItem linkText="Games" linkTo="games" />
+			// 	<MenuItem linkText="Feed" linkTo="feed" />
+			// 	<div style={styles.spacerContainer} />
+			// 	<MenuItem linkText="Logout" linkTo="logout" />
+			// </div>
 		);
 	}
 }
