@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import HomeView from './HomeView';
 import GameListView from './GameListView';
 import GameDetailView from './GameDetailView';

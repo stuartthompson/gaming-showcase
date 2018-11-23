@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const styles = {
@@ -38,6 +39,10 @@ const styles = {
  * Represents a menu component.
  */
 class Menu extends React.Component {
+    static propTypes = {
+        backgroundColor: PropTypes.string,
+        menuItems: PropTypes.object
+    };
 	render() {
         const { backgroundColor, menuItems } = this.props;
         // Calculate menu item widths
@@ -46,11 +51,11 @@ class Menu extends React.Component {
         const spacerWidth = (totalMenuItems / 2) + 2;
         // Map left-side menu items
 		const leftMenuItems = menuItems.leftSide.map((menuItem) => (
-			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
+			<MenuItem key={menuItem.linkText} linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
         ));
         // Map right-side menu items
 		const rightMenuItems = menuItems.rightSide.map((menuItem) => (
-			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
+			<MenuItem key={menuItem.linkText} linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
 		));
 		return (
 			<div style={{...styles.menuContainer, backgroundColor: backgroundColor}}>
