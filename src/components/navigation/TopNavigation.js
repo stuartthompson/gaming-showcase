@@ -15,7 +15,6 @@ const styles = {
 		backgroundColor: '#b9b9b9',
 		color: '#000000',
 		display: 'flex',
-		flex: 1 / 10,
 		flexDirection: 'column',
 		height: '100%',
 		textDecoration: 'none'
@@ -32,9 +31,6 @@ const styles = {
 	menuItemTextContainer: {
 		paddingLeft: 6,
 		textAlign: 'left'
-	},
-	spacerContainer: {
-		flex: 6 / 10
 	}
 };
 
@@ -44,16 +40,19 @@ const styles = {
 class Menu extends React.Component {
 	render() {
 		const { menuItems } = this.props;
+		const totalMenuItems = menuItems.leftSide.length + menuItems.rightSide.length;
+		const menuItemWidth = 1 / totalMenuItems;
+		const spacerWidth = (totalMenuItems / 2) + 2;
 		const leftMenuItems = menuItems.leftSide.map((menuItem) => (
-			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} />
+			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
 		));
 		const rightMenuItems = menuItems.rightSide.map((menuItem) => (
-			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} />
+			<MenuItem linkText={menuItem.linkText} linkTo={menuItem.linkTo} width={menuItemWidth} />
 		));
 		return (
 			<div style={styles.menuContainer}>
 				{leftMenuItems}
-				<div style={styles.spacerContainer} />
+				<div style={{flex: spacerWidth / totalMenuItems }} />
 				{rightMenuItems}
 			</div>
 		);
@@ -65,9 +64,9 @@ class Menu extends React.Component {
  */
 class MenuItem extends React.Component {
 	render() {
-		const { linkText, linkTo } = this.props;
+		const { linkText, linkTo, width } = this.props;
 		return (
-			<Link to={linkTo} style={styles.menuItemContainer}>
+			<Link to={linkTo} style={{...styles.menuItemContainer, flex: width}}>
 				<div style={styles.menuItemSpacer} />
 				<div style={styles.menuItemContentContainer}>
 					<div>I</div>
@@ -96,13 +95,6 @@ export default class TopNavigation extends React.Component {
 		};
 		return (
 			<Menu menuItems={menuItems} />
-			// <div style={styles.container}>
-			// 	<MenuItem linkText="Home" linkTo="/" />
-			// 	<MenuItem linkText="Games" linkTo="games" />
-			// 	<MenuItem linkText="Feed" linkTo="feed" />
-			// 	<div style={styles.spacerContainer} />
-			// 	<MenuItem linkText="Logout" linkTo="logout" />
-			// </div>
 		);
 	}
 }
