@@ -11,50 +11,33 @@ const styles = {
 		alignItems: 'center',
 		textAlign: 'center'
 	},
-	menuItem: {
-		color: '#000000',
-		textDecoration: 'none'
-	},
 	menuItemContainer: {
 		backgroundColor: '#b9b9b9',
+		color: '#000000',
 		display: 'flex',
 		flex: 1 / 10,
 		flexDirection: 'column',
-		height: '100%'
+		height: '100%',
+		textDecoration: 'none'
 	},
 	menuItemSpacer: {
 		flex: 1
 	},
-	homeLinkContainer: {
-		flex: 1
-	},
-	homeLink: {},
 	menuItemContentContainer: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'center'
 	},
 	menuItemIconContainer: {
+	
 	},
 	menuItemTextContainer: {
 		paddingLeft: 6,
 		textAlign: 'left'
 	},
-	gamesButtonContainer: {
-		flex: 1 / 10
-	},
-	gamesLink: {
-		alignItems: 'flex-end'
-	},
-	feedButtonContainer: {
-		flex: 1 / 10
-	},
 	spacerContainer: {
 		flex: 6 / 10
 	},
-	logoutButtonContainer: {
-		flex: 1 / 11
-	}
 };
 
 /**
@@ -64,18 +47,16 @@ class MenuItem extends React.Component {
 	render() {
 		const { linkText, linkTo } = this.props;
 		return (
-			<div style={styles.menuItemContainer}>
+			<Link to={linkTo} style={styles.menuItemContainer}>
 				<div style={styles.menuItemSpacer} />
 				<div style={styles.menuItemContentContainer}>
-					<div style={styles.menuItemIconContainer}>I</div>
+					<div>I</div>
 					<div style={styles.menuItemTextContainer}>
-						<Link to={linkTo} style={styles.menuItem}>
-							{linkText}
-						</Link>
+						<span>{linkText}</span>
 					</div>
 				</div>
 				<div style={styles.menuItemSpacer} />
-			</div>
+			</Link>
 		);
 	}
 }
@@ -91,7 +72,7 @@ export default class TopNavigation extends React.Component {
 				<MenuItem linkText="Games" linkTo="games" />
 				<MenuItem linkText="Feed" linkTo="feed" />
 				<div style={styles.spacerContainer} />
-				<div style={styles.logoutButtonContainer}>Log Out</div>
+				<MenuItem linkText="Logout" linkTo="logout" />
 			</div>
 		);
 	}
