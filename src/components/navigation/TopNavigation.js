@@ -13,17 +13,32 @@ const styles = {
 	},
 	menuItem: {
 		color: '#000000',
-		textUnderline: 'none'
+		textDecoration: 'none'
 	},
-	homeButtonContainer: {
+	menuItemContainer: {
+		backgroundColor: '#b9b9b9',
+		display: 'flex',
 		flex: 1 / 10,
-	},
-	homeLink: {
-		flex: 1,
 		flexDirection: 'column',
-		alignItems: 'center',
-		alignContent: 'center',
+		height: '100%'
+	},
+	menuItemSpacer: {
+		flex: 1
+	},
+	homeLinkContainer: {
+		flex: 1
+	},
+	homeLink: {},
+	menuItemContentContainer: {
+		display: 'flex',
+		flexDirection: 'row',
 		justifyContent: 'center'
+	},
+	menuItemIconContainer: {
+	},
+	menuItemTextContainer: {
+		paddingLeft: 6,
+		textAlign: 'left'
 	},
 	gamesButtonContainer: {
 		flex: 1 / 10
@@ -43,21 +58,38 @@ const styles = {
 };
 
 /**
+ * Represents a menu item component.
+ */
+class MenuItem extends React.Component {
+	render() {
+		const { linkText, linkTo } = this.props;
+		return (
+			<div style={styles.menuItemContainer}>
+				<div style={styles.menuItemSpacer} />
+				<div style={styles.menuItemContentContainer}>
+					<div style={styles.menuItemIconContainer}>I</div>
+					<div style={styles.menuItemTextContainer}>
+						<Link to={linkTo} style={styles.menuItem}>
+							{linkText}
+						</Link>
+					</div>
+				</div>
+				<div style={styles.menuItemSpacer} />
+			</div>
+		);
+	}
+}
+
+/**
  * Represents a top navigation bar component.
  */
 export default class TopNavigation extends React.Component {
 	render() {
 		return (
 			<div style={styles.container}>
-				<div style={styles.homeButtonContainer}>
-					<Link to="/" style={{...styles.homeLink, ...styles.menuItem}}>Home</Link>
-				</div>
-				<div style={styles.gamesButtonContainer}>
-					<Link to="games" style={{...styles.gamesLink, ...styles.menuItem}}>Games</Link>
-				</div>
-				<div style={styles.feedButtonContainer}>
-					<Link to="feed" style={{...styles.feedLink, ...styles.menuItem}}>Feed</Link>
-				</div>
+				<MenuItem linkText="Home" linkTo="/" />
+				<MenuItem linkText="Games" linkTo="games" />
+				<MenuItem linkText="Feed" linkTo="feed" />
 				<div style={styles.spacerContainer} />
 				<div style={styles.logoutButtonContainer}>Log Out</div>
 			</div>
