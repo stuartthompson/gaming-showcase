@@ -1,6 +1,7 @@
 import React from 'react';
+import LayoutView from './LayoutView';
 
-export default class GameListView extends React.Component {
+class GameListViewContent extends React.Component {
     render() {
         return (
             <div>
@@ -8,9 +9,13 @@ export default class GameListView extends React.Component {
                     <span>Game Detail View</span>
                 </div>
                 <div>
-                    <span>Game id: {this.props.match.params.gameid}</span>
+                    <span>Game id: {this.props.gameid}</span>
                 </div>
             </div>
         );
     }
 }
+
+const GameListView = LayoutView(GameListViewContent);
+
+export default GameListView;

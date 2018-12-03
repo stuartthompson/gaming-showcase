@@ -1,6 +1,7 @@
 import React from 'react';
+import LayoutView from './LayoutView';
 
-export default class LogoutView extends React.Component {
+class LogoutViewContent extends React.Component {
     render() {
         return (
             <div>
@@ -14,3 +15,7 @@ export default class LogoutView extends React.Component {
         );
     }
 }
+
+const LogoutView = LayoutView(LogoutViewContent);
+
+export default LogoutView;

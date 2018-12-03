@@ -1,8 +1,9 @@
 import React from 'react';
+import LayoutView from './LayoutView';
 
-export default class HomeView extends React.Component {
+class HomeViewContent extends React.Component {
     render() {
-        return (
+        return(
             <div>
                 <div>
                     <span>Home View</span>
@@ -11,3 +12,7 @@ export default class HomeView extends React.Component {
         );
     }
 }
+
+const HomeView = LayoutView(HomeViewContent);
+
+export default HomeView;

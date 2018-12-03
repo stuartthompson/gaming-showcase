@@ -9,10 +9,10 @@ export default class TopNavigation extends React.Component {
 		const menuItems = {
 			leftSide: [
 				{ linkText: 'Home', linkTo: '/' },
-				{ linkText: 'Games', linkTo: 'games' },
-				{ linkText: 'Feed', linkTo: 'feed' }
+				{ linkText: 'Games', linkTo: '/games' },
+				{ linkText: 'Feed', linkTo: '/feed' }
 			],
-			rightSide: [ { linkText: 'LogOut', linkTo: 'logout' } ]
+			rightSide: [ { linkText: 'LogOut', linkTo: '/logout' } ]
 		};
 		const colors = {
 			menuBgColor: '#b9b9b9',

@@ -1,6 +1,7 @@
 import React from 'react';
+import LayoutView from './LayoutView';
 
-export default class GameListView extends React.Component {
+class GameListViewContent extends React.Component {
     render() {
         return (
             <div>
@@ -14,3 +15,7 @@ export default class GameListView extends React.Component {
         );
     }
 }
+
+const GameListView = LayoutView(GameListViewContent);
+
+export default GameListView;

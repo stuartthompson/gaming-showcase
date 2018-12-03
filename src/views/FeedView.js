@@ -1,6 +1,7 @@
 import React from 'react';
+import LayoutView from './LayoutView';
 
-export default class FeedView extends React.Component {
+class FeedViewContent extends React.Component {
     render() {
         return (
             <div>
@@ -14,3 +15,7 @@ export default class FeedView extends React.Component {
         );
     }
 }
+
+const FeedView = LayoutView(FeedViewContent);
+
+export default FeedView;
